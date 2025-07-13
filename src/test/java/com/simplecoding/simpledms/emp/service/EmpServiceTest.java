@@ -9,11 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @Log4j2
 @SpringBootTest
@@ -38,15 +35,14 @@ class EmpServiceTest {
     @Test
     void save() {
 //		1) 테스트 조건:
-        LocalDate localDate=LocalDate.parse("2025-06-24"); // 컨트롤러에서는 자동 변환됨(단위테스트만 사용)
         EmpDto empDto=new EmpDto();
         empDto.setEname("홍길동");
         empDto.setJob("부장");
-        empDto.setManager(8000);
-        empDto.setHiredate(localDate);
-        empDto.setSalary(5000);
-        empDto.setCommission(1000);
-        empDto.setDno(10);
+        empDto.setManager((long)8000);
+        empDto.setHiredate(LocalDate.now());
+        empDto.setSalary((long)5000);
+        empDto.setCommission((long)1000);
+        empDto.setDno((long)20);
 
 //		2) 실제 메소드실행
         empService.save(empDto);
@@ -55,21 +51,38 @@ class EmpServiceTest {
 
 
     @Test
-    @Transactional
     void Save2() {
 //		1) 테스트 조건:
-        LocalDate localDate=LocalDate.parse("2025-06-24"); // 컨트롤러에서는 자동 변환됨(단위테스트만 사용)
         EmpDto empDto=new EmpDto();
-        empDto.setEname("홍길동");
+        empDto.setEno((long)8047);
+        empDto.setEname("홍길동2");
         empDto.setJob("부장");
-        empDto.setManager(8000);
-        empDto.setHiredate(localDate);
-        empDto.setSalary(5000);
-        empDto.setCommission(1000);
-        empDto.setDno(10);
+        empDto.setManager((long)8000);
+        empDto.setHiredate(LocalDate.now());
+        empDto.setSalary((long)5000);
+        empDto.setCommission((long)1000);
+        empDto.setDno((long)20);
 
 //		2) 실제 메소드실행
         empService.save(empDto);
+//		3) 검증(확인): 로그 , DB 확인, assert~ (DB확인)
+    }
+
+    @Test
+    void updateFromDto() {
+//		1) 테스트 조건:
+        EmpDto empDto=new EmpDto();
+        empDto.setEno((long)8047);
+        empDto.setEname("홍길동");
+        empDto.setJob("부장");
+        empDto.setManager((long)8000);
+        empDto.setHiredate(LocalDate.now());
+        empDto.setSalary((long)5000);
+        empDto.setCommission((long)1000);
+        empDto.setDno((long)20);
+
+//		2) 실제 메소드실행
+        empService.updateFromDto(empDto);
 //		3) 검증(확인): 로그 , DB 확인, assert~ (DB확인)
     }
 
@@ -77,7 +90,7 @@ class EmpServiceTest {
     void deleteById() throws Exception {
 //		1) 테스트 조건:
 //		2) 실제 메소드실행
-        empService.deleteById(8001);
+        empService.deleteById((long)8047);
 //		3) 검증(확인): 로그 , DB 확인, assert~ (DB확인)
     }
 }

@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class FaqDto {
-    private int fno;           // 번호(기본키)
+    private Long fno;           // 번호(기본키)
     private String title;      // 제목
     private String content;    // 내용
 }

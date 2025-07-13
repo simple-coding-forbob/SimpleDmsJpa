@@ -24,7 +24,7 @@ public class Faq {
     @GeneratedValue(strategy = GenerationType.SEQUENCE
             , generator = "SQ_FAQ_GENERATOR"
     )
-    private int fno;           // 번호(기본키)
+    private Long fno;           // 번호(기본키)
     private String title;      // 제목
     private String content;    // 내용
 }

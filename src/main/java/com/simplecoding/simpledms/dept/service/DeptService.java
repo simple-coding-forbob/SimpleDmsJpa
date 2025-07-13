@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,16 +18,17 @@ public class DeptService {
     //    DB CRUD 클래스 받기 : JPA 제공 함수 사용 가능
     private final DeptRepository deptRepository;
     private final MapStruct mapStruct;
+    private final ErrorMsg  errorMsg;
 
     public Page<DeptDto> selectAll(String searchKeyword, Pageable pageable) {
         Page<Dept> page= deptRepository.selectAll(searchKeyword, pageable);
         return page.map(dept -> mapStruct.toDto(dept));
     }
 
-    public DeptDto findById(int dno) {
+    public DeptDto findById(long dno) {
 //        JPA 상세조회 함수 실행
         Dept dept = deptRepository.findById(dno)
-                .orElseThrow(() -> new RuntimeException(ErrorMsg.getMessage("errors.not.found")));
+                .orElseThrow(() -> new RuntimeException(errorMsg.getMessage("errors.not.found")));
 
         return mapStruct.toDto(dept);
     }
@@ -40,11 +42,18 @@ public class DeptService {
         deptRepository.save(dept);
     }
 
+    @Transactional
+    public void updateFromDto(DeptDto deptDto) {
+//        JPA 저장 함수 실행 : return 값 : 저장된 객체
+        Dept dept=deptRepository.findById(deptDto.getDno())
+                .orElseThrow(() -> new RuntimeException("정보를 찾을 수 없습니다."));
+
+        mapStruct.updateFromDto(deptDto, dept);
+//        deptRepository.save(dept);     // dirty checking 으로 인해 필요없음
+    }
+
     //    삭제 함수
-    public void deleteById(int dno) {
-        if (!deptRepository.existsById(dno)) {
-            throw new RuntimeException(ErrorMsg.getMessage("errors.not.found"));
-        }
+    public void deleteById(long dno) {
         deptRepository.deleteById(dno);
     }
 }

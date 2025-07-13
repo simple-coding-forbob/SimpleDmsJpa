@@ -21,6 +21,7 @@ public class GalleryService {
 
     private final GalleryRepository galleryRepository; // JPA DB 객체
     private final MapStruct mapStruct;
+    private final ErrorMsg  errorMsg;
 
     //    like 검색 + 전체조회 + 페이징처리
     public Page<GalleryDto> selectAll(String fileTitle, Pageable pageable) {
@@ -60,13 +61,13 @@ public class GalleryService {
     //    상세조회
     public Gallery findById(String uuid) {
         return galleryRepository.findById(uuid)
-                .orElseThrow(() -> new RuntimeException(ErrorMsg.getMessage("errors.not.found")));
+                .orElseThrow(() -> new RuntimeException(errorMsg.getMessage("errors.not.found")));
     }
 
     //    삭제 함수
     public void deleteById(String uuid) {
         if (!galleryRepository.existsById(uuid)) {
-            throw new RuntimeException(ErrorMsg.getMessage("errors.not.found"));
+            throw new RuntimeException(errorMsg.getMessage("errors.not.found"));
         }
         galleryRepository.deleteById(uuid);
     }

@@ -63,7 +63,7 @@ public class FaqController {
 
 	//	수정페이지 열기(상세조회)
 	@GetMapping("/faq/edition.do")
-	public String updateFaqView(@RequestParam int fno, Model model) {
+	public String updateFaqView(@RequestParam long fno, Model model) {
 //		서비스의 상세조회
 		FaqDto faqDto=faqService.findById(fno);
 		model.addAttribute("faq", faqDto);
@@ -80,7 +80,7 @@ public class FaqController {
 
 	//	삭제
 	@PostMapping("/faq/delete.do")
-	public String deleteById(@RequestParam int fno) {
+	public String deleteById(@RequestParam long fno) {
 //		서비스의 삭제 실행
 		faqService.deleteById(fno);
 		return "redirect:/faq/faq.do";

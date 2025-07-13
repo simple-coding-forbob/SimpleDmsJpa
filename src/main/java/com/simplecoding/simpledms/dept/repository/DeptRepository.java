@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DeptRepository extends JpaRepository<Dept,Integer> {
+public interface DeptRepository extends JpaRepository<Dept,Long> {
     @Query(value = "select d from Dept d\n" +
             "where d.dname like %:searchKeyword%")
     Page<Dept> selectAll(

@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FaqRepository extends JpaRepository<Faq,Integer> {
+public interface FaqRepository extends JpaRepository<Faq,Long> {
     @Query(value = "select f from Faq f\n" +
             "where f.title like %:searchKeyword%")
     Page<Faq> selectAll(

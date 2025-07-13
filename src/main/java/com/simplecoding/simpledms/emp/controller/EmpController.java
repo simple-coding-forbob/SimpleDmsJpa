@@ -65,7 +65,7 @@ public class EmpController {
 
 	//	수정페이지 열기(상세조회)
 	@GetMapping("/emp/edition.do")
-	public String updateEmpView(@RequestParam int eno, Model model) {
+	public String updateEmpView(@RequestParam long eno, Model model) {
 //		서비스의 상세조회
 		EmpDto empDto=empService.findById(eno);
 		model.addAttribute("emp", empDto);
@@ -82,7 +82,7 @@ public class EmpController {
 
 	//	삭제
 	@PostMapping("/emp/delete.do")
-	public String deleteById(@RequestParam int eno) {
+	public String deleteById(@RequestParam long eno) {
 //		서비스의 삭제 실행
 		empService.deleteById(eno);
 		return "redirect:/emp/emp.do";

@@ -1,5 +1,6 @@
 package com.simplecoding.simpledms.common;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
@@ -10,16 +11,12 @@ import java.util.Locale;
  * 에러 메세지: messages.properties
  */
 @Component
+@RequiredArgsConstructor
 public class ErrorMsg {
 
-    private static MessageSource messageSource;
+    private final MessageSource messageSource;
 
-    public ErrorMsg(MessageSource ms) {
-        messageSource = ms;
-    }
-
-    // 파라미터 없이 메시지를 가져오는 전용 메서드
-    public static String getMessage(String code) {
+    public String getMessage(String code) {
         return messageSource.getMessage(code, null, Locale.getDefault());
     }
 }
