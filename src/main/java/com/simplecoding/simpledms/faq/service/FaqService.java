@@ -1,0 +1,50 @@
+package com.simplecoding.simpledms.faq.service;
+
+import com.simplecoding.simpledms.common.ErrorMsg;
+import com.simplecoding.simpledms.common.MapStruct;
+import com.simplecoding.simpledms.faq.dto.FaqDto;
+import com.simplecoding.simpledms.faq.entity.Faq;
+import com.simplecoding.simpledms.faq.repository.FaqRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+public class FaqService {
+
+    //    DB CRUD 클래스 받기 : JPA 제공 함수 사용 가능
+    private final FaqRepository faqRepository; // DI
+    private final MapStruct mapStruct;
+
+    public Page<FaqDto> selectAll(String searchKeyword, Pageable pageable) {
+        Page<Faq> page= faqRepository.selectAll(searchKeyword, pageable);
+        return page.map(faq -> mapStruct.toDto(faq));
+    }
+
+    public FaqDto findById(int fno) {
+//        JPA 상세조회 함수 실행
+        Faq faq= faqRepository.findById(fno)
+                .orElseThrow(() -> new RuntimeException(ErrorMsg.getMessage("errors.not.found")));
+        return mapStruct.toDto(faq);
+    }
+
+    //    저장/수정 : 1) 기본키가(부서번호) 없으면 저장(insert)
+//               2) 기본키가(부서번호) 있으면 수정(update)
+//           => JPA 내부적으로 if문 있음 : 알아서 실행됨
+    public void save(FaqDto faqDto) {
+//        JPA 저장 함수 실행 : return 값 : 저장된 객체
+        Faq faq= mapStruct.toEntity(faqDto);
+        faqRepository.save(faq);
+    }
+
+    //    삭제 함수
+    public void deleteById(int fno) {
+        if (!faqRepository.existsById(fno)) {
+            throw new RuntimeException(ErrorMsg.getMessage("errors.not.found"));
+        }
+        faqRepository.deleteById(fno);
+    }
+}
+
