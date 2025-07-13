@@ -20,8 +20,8 @@ public class DeptService {
     private final MapStruct mapStruct;
     private final ErrorMsg  errorMsg;
 
-    public Page<DeptDto> selectAll(String searchKeyword, Pageable pageable) {
-        Page<Dept> page= deptRepository.selectAll(searchKeyword, pageable);
+    public Page<DeptDto> selectDeptList(String searchKeyword, Pageable pageable) {
+        Page<Dept> page= deptRepository.selectDeptList(searchKeyword, pageable);
         return page.map(dept -> mapStruct.toDto(dept));
     }
 

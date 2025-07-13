@@ -22,7 +22,7 @@ class DeptServiceTest {
     void findAll() {
         String searchKeyword="";
         Pageable pageable = PageRequest.of(0,3);
-        Page<DeptDto> page = deptService.selectAll(searchKeyword, pageable);
+        Page<DeptDto> page = deptService.selectDeptList(searchKeyword, pageable);
         log.info("테스트 : "+page.getContent());  // 패이지 안에 content 에 dept 객체가 있습니다.
     }
 
