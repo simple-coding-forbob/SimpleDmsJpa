@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,16 +18,17 @@ public class EmpService {
     //    DB CRUD 클래스 받기 : JPA 제공 함수 사용 가능
     private final EmpRepository empRepository;
     private final MapStruct mapStruct;
+    private final ErrorMsg  errorMsg;
 
     public Page<EmpDto> selectAll(String searchKeyword, Pageable pageable) {
         Page<Emp>  page= empRepository.selectAll(searchKeyword, pageable);
         return page.map(emp -> mapStruct.toDto(emp));
     }
 
-    public EmpDto findById(int eno) {
+    public EmpDto findById(long eno) {
 //        JPA 상세조회 함수 실행
         Emp emp= empRepository.findById(eno)
-                .orElseThrow(() -> new RuntimeException(ErrorMsg.getMessage("errors.not.found")));
+                .orElseThrow(() -> new RuntimeException(errorMsg.getMessage("errors.not.found")));
         return mapStruct.toDto(emp);
     }
 
@@ -39,11 +41,17 @@ public class EmpService {
         empRepository.save(emp);
     }
 
+    @Transactional
+    public void updateFromDto(EmpDto empDto) {
+//        JPA 저장 함수 실행 : return 값 : 저장된 객체
+        Emp emp=empRepository.findById(empDto.getEno())
+                .orElseThrow(() -> new RuntimeException("errors.not.found"));
+
+        mapStruct.updateFromDto(empDto, emp);
+    }
+
     //    삭제 함수
-    public void deleteById(int eno) {
-        if (!empRepository.existsById(eno)) {
-            throw new RuntimeException(ErrorMsg.getMessage("errors.not.found"));
-        }
+    public void deleteById(long eno) {
         empRepository.deleteById(eno);
     }
 }

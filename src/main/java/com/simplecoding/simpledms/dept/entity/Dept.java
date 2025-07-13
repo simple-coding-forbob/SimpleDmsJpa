@@ -4,14 +4,12 @@ package com.simplecoding.simpledms.dept.entity;
 import com.simplecoding.simpledms.common.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 
 @Entity
 @Table(name = "TB_DEPT")
 @SequenceGenerator(
-        name = "SQ_DEPT_GENERATOR",
+        name = "SQ_DEPT_JPA",
         sequenceName = "SQ_DEPT",
         allocationSize = 1
 )
@@ -20,14 +18,13 @@ import org.hibernate.annotations.DynamicUpdate;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@DynamicInsert
-@DynamicUpdate
+@EqualsAndHashCode(of = "dno", callSuper = false)
 public class Dept extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE
-            , generator = "SQ_DEPT_GENERATOR"
+            , generator = "SQ_DEPT_JPA"
     )
-    private Integer dno;   // 부서번호(기본키)
+    private Long dno;   // 부서번호(기본키)
     private String  dname; // 부서명
     private String  loc;   // 부서위치
 }

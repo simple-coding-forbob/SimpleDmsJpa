@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,16 +18,17 @@ public class FaqService {
     //    DB CRUD 클래스 받기 : JPA 제공 함수 사용 가능
     private final FaqRepository faqRepository; // DI
     private final MapStruct mapStruct;
+    private final ErrorMsg  errorMsg;
 
     public Page<FaqDto> selectAll(String searchKeyword, Pageable pageable) {
         Page<Faq> page= faqRepository.selectAll(searchKeyword, pageable);
         return page.map(faq -> mapStruct.toDto(faq));
     }
 
-    public FaqDto findById(int fno) {
+    public FaqDto findById(long fno) {
 //        JPA 상세조회 함수 실행
         Faq faq= faqRepository.findById(fno)
-                .orElseThrow(() -> new RuntimeException(ErrorMsg.getMessage("errors.not.found")));
+                .orElseThrow(() -> new RuntimeException(errorMsg.getMessage("errors.not.found")));
         return mapStruct.toDto(faq);
     }
 
@@ -39,11 +41,17 @@ public class FaqService {
         faqRepository.save(faq);
     }
 
+    @Transactional
+    public void updateFromDto(FaqDto faqDto) {
+//        JPA 저장 함수 실행 : return 값 : 저장된 객체
+        Faq faq=faqRepository.findById(faqDto.getFno())
+                .orElseThrow(() -> new RuntimeException("errors.not.found"));
+
+        mapStruct.updateFromDto(faqDto, faq);
+    }
+
     //    삭제 함수
-    public void deleteById(int fno) {
-        if (!faqRepository.existsById(fno)) {
-            throw new RuntimeException(ErrorMsg.getMessage("errors.not.found"));
-        }
+    public void deleteById(long fno) {
         faqRepository.deleteById(fno);
     }
 }
