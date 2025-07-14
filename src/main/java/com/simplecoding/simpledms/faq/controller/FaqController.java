@@ -30,13 +30,13 @@ public class FaqController {
 	
 //	전체조회
 	@GetMapping("/faq/faq.do")
-	public String selectAll( @RequestParam(defaultValue = "") String searchKeyword,
+	public String selectFaqList( @RequestParam(defaultValue = "") String searchKeyword,
 							 @PageableDefault(page = 0, size = 3) Pageable pageable,
 					   Model model) {
 //		1) Pageable : page(현재페이지), size(1페이지 당 화면에 보일개수)
 //		Pageable pageable = PageRequest.of(page, size);
 //		전체조회 서비스 메소드 실행
-		Page<FaqDto> pages=faqService.selectAll(searchKeyword, pageable);
+		Page<FaqDto> pages=faqService.selectFaqList(searchKeyword, pageable);
 		log.info("테스트 : "+pages);
 		model.addAttribute("faqs", pages.getContent());
 		model.addAttribute("pages", pages);

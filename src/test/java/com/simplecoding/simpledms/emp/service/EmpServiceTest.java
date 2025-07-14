@@ -22,12 +22,12 @@ class EmpServiceTest {
 
     //    Lazy Loading 사용시 트랜잭션 기능 필요함
     @Test
-    void selectAll() {
+    void selectEmpList() {
         //		1) 테스트 조건:
         String searchKeyword="SCOTT";
         Pageable pageable = PageRequest.of(0,3);
 //		2) 실제 메소드실행
-        Page<EmpDto> page = empService.selectAll(searchKeyword, pageable);
+        Page<EmpDto> page = empService.selectEmpList(searchKeyword, pageable);
         //		3) 검증(확인): 로그 , DB 확인, assert~ (DB확인)
         log.info("테스트 : "+page.getContent());
     }

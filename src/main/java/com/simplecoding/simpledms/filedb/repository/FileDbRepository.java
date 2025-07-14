@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface FileDbRepository extends JpaRepository<FileDb, String> {
     @Query(value = "select f from FileDb f\n" +
             "where f.fileTitle like %:searchKeyword%")
-    Page<FileDb> selectAll(
+    Page<FileDb> selectFileDbList(
             @Param("searchKeyword") String searchKeyword,
             Pageable pageable
     );

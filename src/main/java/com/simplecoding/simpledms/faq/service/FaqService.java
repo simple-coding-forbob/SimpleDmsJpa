@@ -20,8 +20,8 @@ public class FaqService {
     private final MapStruct mapStruct;
     private final ErrorMsg  errorMsg;
 
-    public Page<FaqDto> selectAll(String searchKeyword, Pageable pageable) {
-        Page<Faq> page= faqRepository.selectAll(searchKeyword, pageable);
+    public Page<FaqDto> selectFaqList(String searchKeyword, Pageable pageable) {
+        Page<Faq> page= faqRepository.selectFaqList(searchKeyword, pageable);
         return page.map(faq -> mapStruct.toDto(faq));
     }
 

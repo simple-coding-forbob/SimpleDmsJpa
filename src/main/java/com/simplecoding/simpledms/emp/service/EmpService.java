@@ -20,8 +20,8 @@ public class EmpService {
     private final MapStruct mapStruct;
     private final ErrorMsg  errorMsg;
 
-    public Page<EmpDto> selectAll(String searchKeyword, Pageable pageable) {
-        Page<Emp>  page= empRepository.selectAll(searchKeyword, pageable);
+    public Page<EmpDto> selectEmpList(String searchKeyword, Pageable pageable) {
+        Page<Emp>  page= empRepository.selectEmpList(searchKeyword, pageable);
         return page.map(emp -> mapStruct.toDto(emp));
     }
 

@@ -19,7 +19,7 @@ class DeptServiceTest {
     DeptService deptService;
 
     @Test
-    void findAll() {
+    void selectDeptList() {
         String searchKeyword="";
         Pageable pageable = PageRequest.of(0,3);
         Page<DeptDto> page = deptService.selectDeptList(searchKeyword, pageable);
