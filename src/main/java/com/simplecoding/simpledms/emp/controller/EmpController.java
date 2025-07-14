@@ -31,7 +31,7 @@ public class EmpController {
 	private final EmpService empService;
 	
 //	전체조회
-	@GetMapping("/emp/emp.do")
+	@GetMapping("/emp")
 	public String selectEmpList( @RequestParam(defaultValue = "") String searchKeyword,
 							 @PageableDefault(page = 0, size = 3) Pageable pageable,
 					   Model model) {
@@ -47,24 +47,24 @@ public class EmpController {
 	}
 
 	//	추가 페이지 열기
-	@GetMapping("/emp/addition.do")
+	@GetMapping("/emp/addition")
 	public String createEmpView() {
 		return "emp/add_emp";
 	}
 
 	//	insert : 저장 버튼 클릭시
-	@PostMapping("/emp/add.do")
+	@PostMapping("/emp/add")
 	public String insert(@ModelAttribute EmpDto empDto) {
 //		Emp 내용 확인
 		log.info("테스트3 :"+empDto);
 //		서비스의 insert 실행
 		empService.save(empDto);
 
-		return "redirect:/emp/emp.do";
+		return "redirect:/emp/emp";
 	}
 
 	//	수정페이지 열기(상세조회)
-	@GetMapping("/emp/edition.do")
+	@GetMapping("/emp/edition")
 	public String updateEmpView(@RequestParam long eno, Model model) {
 //		서비스의 상세조회
 		EmpDto empDto=empService.findById(eno);
@@ -73,19 +73,19 @@ public class EmpController {
 	}
 
 	//	수정: 버튼 클릭시 실행
-	@PostMapping("/emp/edit.do")
+	@PostMapping("/emp/edit")
 	public String update(@ModelAttribute EmpDto empDto) {
 //		서비스의 수정 실행
 		empService.save(empDto);
-		return "redirect:/emp/emp.do";
+		return "redirect:/emp/emp";
 	}
 
 	//	삭제
-	@PostMapping("/emp/delete.do")
+	@PostMapping("/emp/delete")
 	public String deleteById(@RequestParam long eno) {
 //		서비스의 삭제 실행
 		empService.deleteById(eno);
-		return "redirect:/emp/emp.do";
+		return "redirect:/emp/emp";
 	}
 }
 

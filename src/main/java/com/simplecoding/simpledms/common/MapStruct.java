@@ -19,7 +19,14 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE  // null 제외 기능(update 시 사용)
 )
 public interface MapStruct {
-    // TODO: 1) Emp <-> EmpDto
+
+    // TODO: 1) Dept <-> DeptDto
+    DeptDto toDto(Dept dept);
+    Dept toEntity(DeptDto deptDto);
+    // TODO: 수정 시 사용: dirty checking 기능(save() 없이 수정 가능)
+    void updateFromDto(DeptDto deptDto, @MappingTarget Dept dept);
+
+    // TODO: 2) Emp <-> EmpDto
     @Mapping(source = "dept.dno", target = "dno")
     EmpDto toDto(Emp emp);
     @Mapping(source = "dno", target = "dept.dno")
@@ -28,12 +35,6 @@ public interface MapStruct {
 //      경고 무시하고 싶으면 아래 추가하세요
     @Mapping(target = "dept", ignore = true)
     void updateFromDto(EmpDto empDto, @MappingTarget Emp emp);
-
-    // TODO: 2) Dept <-> DeptDto
-    DeptDto toDto(Dept dept);
-    Dept toEntity(DeptDto deptDto);
-    // TODO: 수정 시 사용: dirty checking 기능(save() 없이 수정 가능)
-    void updateFromDto(DeptDto deptDto, @MappingTarget Dept dept);
 
     // TODO: 3) Dept <-> DeptDto
     FaqDto toDto(Faq faq);

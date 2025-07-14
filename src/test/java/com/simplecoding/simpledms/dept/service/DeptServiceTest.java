@@ -27,16 +27,6 @@ class DeptServiceTest {
     }
 
     @Test
-    void findById() {
-//		1) 테스트 조건: Dept(dno,dname,loc)
-        long dno=20;
-//		2) 실제 메소드실행
-        DeptDto deptDto=deptService.findById(dno);
-//		3) 검증(확인): 로그 , DB 확인, assert~ (DB확인)
-        log.info(deptDto);
-    }
-
-    @Test
     void save() {
 //		1) 테스트 조건: Dept(dno,dname,loc)
         DeptDto deptDto=new DeptDto();
@@ -45,6 +35,16 @@ class DeptServiceTest {
 //		2) 실제 메소드실행
         deptService.save(deptDto);
 //		3) 검증(확인): 로그 , DB 확인, assert~ (DB확인)
+    }
+
+    @Test
+    void findById() {
+//		1) 테스트 조건: Dept(dno,dname,loc)
+        long dno=30;
+//		2) 실제 메소드실행
+        DeptDto deptDto=deptService.findById(dno);
+//		3) 검증(확인): 로그 , DB 확인, assert~ (DB확인)
+        log.info(deptDto);
     }
 
     @Test
@@ -60,7 +60,7 @@ class DeptServiceTest {
     @Test
     void updateFromDto() {
 //		1) 테스트 조건: Dept(dno,dname,loc)
-        DeptDto deptDto=new DeptDto((long)20,"개발부2","서울");
+        DeptDto deptDto=new DeptDto((long)30,"개발부2","서울");
 //		2) 실제 메소드실행
         deptService.updateFromDto(deptDto);
 //		3) 검증(확인): 로그 , DB 확인, assert~ (DB확인)
@@ -70,7 +70,7 @@ class DeptServiceTest {
     void deleteById() throws Exception {
 //		1) 테스트 조건: Dept(dno,dname,loc)
 //		2) 실제 메소드실행
-        deptService.deleteById((long)430);
+        deptService.deleteById((long)620);
 //		3) 검증(확인): 로그 , DB 확인, assert~ (DB확인)
     }
 }
