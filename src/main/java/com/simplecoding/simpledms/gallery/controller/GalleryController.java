@@ -59,7 +59,7 @@ public class GalleryController {
 			 @RequestParam(required = false) MultipartFile image) throws Exception {
 		GalleryDto galleryDto=new GalleryDto(galleryTitle,image.getBytes());
 		galleryService.save(galleryDto);
-		return "redirect:/gallery/gallery";
+		return "redirect:/gallery";
 	}
 	
 //	다운로드 메소드: 사용자가 다운로드URL을 웹브라우저에서 실행하면 이 메소드가 첨부파일을 전달해줌
@@ -80,7 +80,7 @@ public class GalleryController {
 	@PostMapping("/gallery/delete")
 	public String delete(@RequestParam(defaultValue = "") String uuid) {
 		galleryService.deleteById(uuid);
-		return "redirect:/gallery/gallery";
+		return "redirect:/gallery";
 	}
 }
 

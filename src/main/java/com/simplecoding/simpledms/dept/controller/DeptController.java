@@ -58,7 +58,7 @@ public class DeptController {
 //		서비스의 insert 실행
 		deptService.save(deptDto);
 
-		return "redirect:/dept/dept";
+		return "redirect:/dept";
 	}
 
 	//	수정페이지 열기(상세조회)
@@ -75,7 +75,7 @@ public class DeptController {
 	public String update(@ModelAttribute DeptDto deptDto) {
 //		서비스의 수정 실행
 		deptService.save(deptDto);
-		return "redirect:/dept/dept";
+		return "redirect:/dept";
 	}
 
 	//	삭제
@@ -83,7 +83,7 @@ public class DeptController {
 	public String deleteById(@RequestParam long dno) {
 //		서비스의 삭제 실행
 		deptService.deleteById(dno);
-		return "redirect:/dept/dept";
+		return "redirect:/dept";
 	}
 }
 

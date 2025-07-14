@@ -58,7 +58,7 @@ public class FaqController {
 //		서비스의 insert 실행
 		faqService.save(faqDto);
 
-		return "redirect:/faq/faq";
+		return "redirect:/faq";
 	}
 
 	//	수정페이지 열기(상세조회)
@@ -75,7 +75,7 @@ public class FaqController {
 	public String update(@ModelAttribute FaqDto faqDto) {
 //		서비스의 수정 실행
 		faqService.save(faqDto);
-		return "redirect:/faq/faq";
+		return "redirect:/faq";
 	}
 
 	//	삭제
@@ -83,7 +83,7 @@ public class FaqController {
 	public String deleteById(@RequestParam long fno) {
 //		서비스의 삭제 실행
 		faqService.deleteById(fno);
-		return "redirect:/faq/faq";
+		return "redirect:/faq";
 	}
 }
 

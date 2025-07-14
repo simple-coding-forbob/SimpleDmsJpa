@@ -60,7 +60,7 @@ public class EmpController {
 //		서비스의 insert 실행
 		empService.save(empDto);
 
-		return "redirect:/emp/emp";
+		return "redirect:/emp";
 	}
 
 	//	수정페이지 열기(상세조회)
@@ -77,7 +77,7 @@ public class EmpController {
 	public String update(@ModelAttribute EmpDto empDto) {
 //		서비스의 수정 실행
 		empService.save(empDto);
-		return "redirect:/emp/emp";
+		return "redirect:/emp";
 	}
 
 	//	삭제
@@ -85,7 +85,7 @@ public class EmpController {
 	public String deleteById(@RequestParam long eno) {
 //		서비스의 삭제 실행
 		empService.deleteById(eno);
-		return "redirect:/emp/emp";
+		return "redirect:/emp";
 	}
 }
 
