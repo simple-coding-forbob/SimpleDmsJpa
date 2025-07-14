@@ -25,13 +25,6 @@ public class EmpService {
         return page.map(emp -> mapStruct.toDto(emp));
     }
 
-    public EmpDto findById(long eno) {
-//        JPA 상세조회 함수 실행
-        Emp emp= empRepository.findById(eno)
-                .orElseThrow(() -> new RuntimeException(errorMsg.getMessage("errors.not.found")));
-        return mapStruct.toDto(emp);
-    }
-
     //    저장/수정 : 1) 기본키가(부서번호) 없으면 저장(insert)
 //               2) 기본키가(부서번호) 있으면 수정(update)
 //           => JPA 내부적으로 if문 있음 : 알아서 실행됨
@@ -40,6 +33,14 @@ public class EmpService {
         Emp emp=mapStruct.toEntity(empDto);
         empRepository.save(emp);
     }
+
+    public EmpDto findById(long eno) {
+//        JPA 상세조회 함수 실행
+        Emp emp= empRepository.findById(eno)
+                .orElseThrow(() -> new RuntimeException(errorMsg.getMessage("errors.not.found")));
+        return mapStruct.toDto(emp);
+    }
+
 
     @Transactional
     public void updateFromDto(EmpDto empDto) {

@@ -25,14 +25,6 @@ public class DeptService {
         return page.map(dept -> mapStruct.toDto(dept));
     }
 
-    public DeptDto findById(long dno) {
-//        JPA 상세조회 함수 실행
-        Dept dept = deptRepository.findById(dno)
-                .orElseThrow(() -> new RuntimeException(errorMsg.getMessage("errors.not.found")));
-
-        return mapStruct.toDto(dept);
-    }
-
     //    저장/수정 : 1) 기본키가(부서번호) 없으면 저장(insert)
 //               2) 기본키가(부서번호) 있으면 수정(update)
 //           => JPA 내부적으로 if문 있음 : 알아서 실행됨
@@ -40,6 +32,14 @@ public class DeptService {
 //        JPA 저장 함수 실행 : return 값 : 저장된 객체
         Dept dept=mapStruct.toEntity(deptDto);
         deptRepository.save(dept);
+    }
+
+    public DeptDto findById(long dno) {
+//        JPA 상세조회 함수 실행
+        Dept dept = deptRepository.findById(dno)
+                .orElseThrow(() -> new RuntimeException(errorMsg.getMessage("errors.not.found")));
+
+        return mapStruct.toDto(dept);
     }
 
     @Transactional

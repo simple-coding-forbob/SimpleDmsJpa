@@ -24,7 +24,7 @@ class EmpServiceTest {
     @Test
     void selectEmpList() {
         //		1) 테스트 조건:
-        String searchKeyword="SCOTT";
+        String searchKeyword="";
         Pageable pageable = PageRequest.of(0,3);
 //		2) 실제 메소드실행
         Page<EmpDto> page = empService.selectEmpList(searchKeyword, pageable);
@@ -42,7 +42,7 @@ class EmpServiceTest {
         empDto.setHiredate(LocalDate.now());
         empDto.setSalary((long)5000);
         empDto.setCommission((long)1000);
-        empDto.setDno((long)20);
+        empDto.setDno((long)30);
 
 //		2) 실제 메소드실행
         empService.save(empDto);
@@ -72,8 +72,8 @@ class EmpServiceTest {
     void updateFromDto() {
 //		1) 테스트 조건:
         EmpDto empDto=new EmpDto();
-        empDto.setEno((long)8047);
-        empDto.setEname("홍길동");
+        empDto.setEno((long)8061);
+        empDto.setEname("홍길동2");
         empDto.setJob("부장");
         empDto.setManager((long)8000);
         empDto.setHiredate(LocalDate.now());
@@ -90,7 +90,7 @@ class EmpServiceTest {
     void deleteById() throws Exception {
 //		1) 테스트 조건:
 //		2) 실제 메소드실행
-        empService.deleteById((long)8047);
+        empService.deleteById((long)8061);
 //		3) 검증(확인): 로그 , DB 확인, assert~ (DB확인)
     }
 }

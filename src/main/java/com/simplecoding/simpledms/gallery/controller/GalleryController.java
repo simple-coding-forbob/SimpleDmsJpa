@@ -35,7 +35,7 @@ public class GalleryController {
 	private final GalleryService galleryService;
 	
 //	전체조회
-	@GetMapping("/gallery/gallery.do")
+	@GetMapping("/gallery")
 	public String selectAll(@RequestParam(defaultValue = "") String searchKeyword,
 								   @PageableDefault(page = 0, size = 3) Pageable pageable,
 								   Model model) {
@@ -48,22 +48,22 @@ public class GalleryController {
 	}
 	
 //	추가 페이지 열기
-	@GetMapping("/gallery/addition.do")
+	@GetMapping("/gallery/addition")
 	public String createGalleryView() {
 		return "gallery/add_gallery";
 	}
 	
 //	insert: 업로드
-	@PostMapping("/gallery/add.do")
+	@PostMapping("/gallery/add")
 	public String insert(@RequestParam(defaultValue = "") String galleryTitle,
 			 @RequestParam(required = false) MultipartFile image) throws Exception {
 		GalleryDto galleryDto=new GalleryDto(galleryTitle,image.getBytes());
 		galleryService.save(galleryDto);
-		return "redirect:/gallery/gallery.do";
+		return "redirect:/gallery/gallery";
 	}
 	
 //	다운로드 메소드: 사용자가 다운로드URL을 웹브라우저에서 실행하면 이 메소드가 첨부파일을 전달해줌
-	@GetMapping("/gallery/download.do")
+	@GetMapping("/gallery/download")
 	@ResponseBody
 	public ResponseEntity<byte[]> fileDownload(@RequestParam(defaultValue = "") String uuid) {
 		Gallery gallery=galleryService.findById(uuid);
@@ -77,10 +77,10 @@ public class GalleryController {
 	}
 	
 //	삭제
-	@PostMapping("/gallery/delete.do")
+	@PostMapping("/gallery/delete")
 	public String delete(@RequestParam(defaultValue = "") String uuid) {
 		galleryService.deleteById(uuid);
-		return "redirect:/gallery/gallery.do";
+		return "redirect:/gallery/gallery";
 	}
 }
 

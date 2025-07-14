@@ -19,8 +19,8 @@
             부서
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="<c:url value='/dept/dept.do'/>">Dept</a></li>
-            <li><a class="dropdown-item" href="<c:url value='/dept/addition.do'/>">Add Dept</a></li>
+            <li><a class="dropdown-item" href="<c:url value='/dept'/>">Dept</a></li>
+            <li><a class="dropdown-item" href="<c:url value='/dept/addition'/>">Add Dept</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -28,8 +28,8 @@
             사원(퀴즈)
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="<c:url value='/emp/emp.do'/>">Emp</a></li>
-            <li><a class="dropdown-item" href="<c:url value='/emp/addition.do'/>">Add Emp</a></li>
+            <li><a class="dropdown-item" href="<c:url value='/emp'/>">Emp</a></li>
+            <li><a class="dropdown-item" href="<c:url value='/emp/addition'/>">Add Emp</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -37,8 +37,8 @@
             Faq(마무리퀴즈)
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="<c:url value='/faq/faq.do'/>">Faq</a></li>
-            <li><a class="dropdown-item" href="<c:url value='/faq/addition.do'/>">Add Faq</a></li>
+            <li><a class="dropdown-item" href="<c:url value='/faq'/>">Faq</a></li>
+            <li><a class="dropdown-item" href="<c:url value='/faq/addition'/>">Add Faq</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -46,8 +46,8 @@
             fileDb
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="<c:url value='/fileDb/fileDb.do'/>">fileDb</a></li>
-            <li><a class="dropdown-item" href="<c:url value='/fileDb/addition.do'/>">Add fileDb</a></li>
+            <li><a class="dropdown-item" href="<c:url value='/fileDb'/>">fileDb</a></li>
+            <li><a class="dropdown-item" href="<c:url value='/fileDb/addition'/>">Add fileDb</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -55,8 +55,8 @@
             gallery
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="<c:url value='/gallery/gallery.do'/>">gallery</a></li>
-            <li><a class="dropdown-item" href="<c:url value='/gallery/addition.do'/>">Add gallery</a></li>
+            <li><a class="dropdown-item" href="<c:url value='/gallery'/>">gallery</a></li>
+            <li><a class="dropdown-item" href="<c:url value='/gallery/addition'/>">Add gallery</a></li>
           </ul>
         </li>
       </ul>
@@ -67,10 +67,10 @@
         <!-- memberVO 가 세션에 없으면 메뉴을 보이고, 있으면 안보임 -->
         <c:if test="${sessionScope.memberVO == null}">
         	<li class="nav-item">
-	          <a class="nav-link active" href="/register.do"> 회원가입 </a>
+	          <a class="nav-link active" href="/register"> 회원가입 </a>
 	        </li>
 	        <li class="nav-item">
-	           <a class="nav-link active" href="/login.do"> 로그인 </a>
+	           <a class="nav-link active" href="/login"> 로그인 </a>
 	        </li>
         </c:if>
 
@@ -80,7 +80,7 @@
         <!-- memberVO 가 세션에 있으면 메뉴을 보이고, 없으면 안보임 -->
         <c:if test="${sessionScope.memberVO != null}">
 	         <li class="nav-item">
-	           <a href="/logout.do" class="nav-link active"> 로그아웃
+	           <a href="/logout" class="nav-link active"> 로그아웃
 	           </a>
 	         </li>
 	    </c:if>

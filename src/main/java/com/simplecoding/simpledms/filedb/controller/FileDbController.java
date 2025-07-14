@@ -35,7 +35,7 @@ public class FileDbController {
 	private final FileDbService fileDbService;
 	
 //	전체조회
-	@GetMapping("/fileDb/fileDb.do")
+	@GetMapping("/fileDb")
 	public String selectFileDbList(@RequestParam(defaultValue = "") String searchKeyword,
 								   @PageableDefault(page = 0, size = 3) Pageable pageable,
 								   Model model) {
@@ -48,7 +48,7 @@ public class FileDbController {
 	}	
 	
 //	추가 페이지 열기
-	@GetMapping("/fileDb/addition.do")
+	@GetMapping("/fileDb/addition")
 	public String createFileDbView() {
 		return "fileDb/add_fileDb";
 	}
@@ -57,20 +57,20 @@ public class FileDbController {
 //	@RequestParam(required = false) : 첨부파일 없어도 에러 발생 안하게 하는 옵션
 //	첨부파일 다루기: (필수) 예외처리 필수
 //	image.getBytes() : byte[] 배열로 변경
-	@PostMapping("/fileDb/add.do")
+	@PostMapping("/fileDb/add")
 	public String insert(@RequestParam(defaultValue = "") String fileTitle,
 			 @RequestParam(defaultValue = "") String fileContent,
 			 @RequestParam(required = false) MultipartFile image) throws Exception {
 		FileDbDto fileDbDto=new FileDbDto(fileTitle,fileContent,image.getBytes());
 //		서비스의 insert 메소드 실행
 		fileDbService.save(fileDbDto);
-		return "redirect:/fileDb/fileDb.do";
+		return "redirect:/fileDb/fileDb";
 	}
 	
 //	다운로드 메소드: 사용자가 다운로드URL을 웹브라우저에서 실행하면 이 메소드가 첨부파일을 전달해줌
 //	@ResponseBody: JSON으로(JS 객체) 데이터를 JSP로 전달해줌
 //	JSON : 예) [{속성:값},{속성2:값2}...]
-	@GetMapping("/fileDb/download.do")
+	@GetMapping("/fileDb/download")
 	@ResponseBody
 	public ResponseEntity<byte[]> fileDownload(@RequestParam(defaultValue = "") String uuid) {
 //		1) 상세조회: 첨부파일을 가져오려구
@@ -91,11 +91,11 @@ public class FileDbController {
 	}
 	
 //	삭제
-	@PostMapping("/fileDb/delete.do")
+	@PostMapping("/fileDb/delete")
 	public String delete(@RequestParam(defaultValue = "") String uuid) {
 //		서비스의 삭제 메소드 실행
 		fileDbService.deleteById(uuid);
-		return "redirect:/fileDb/fileDb.do";
+		return "redirect:/fileDb/fileDb";
 	}
 }
 

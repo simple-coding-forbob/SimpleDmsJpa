@@ -29,7 +29,7 @@ public class FaqController {
 	private final FaqService faqService;
 	
 //	전체조회
-	@GetMapping("/faq/faq.do")
+	@GetMapping("/faq")
 	public String selectFaqList( @RequestParam(defaultValue = "") String searchKeyword,
 							 @PageableDefault(page = 0, size = 3) Pageable pageable,
 					   Model model) {
@@ -45,24 +45,24 @@ public class FaqController {
 	}
 
 	//	추가 페이지 열기
-	@GetMapping("/faq/addition.do")
+	@GetMapping("/faq/addition")
 	public String createFaqView() {
 		return "faq/add_faq";
 	}
 
 	//	insert : 저장 버튼 클릭시
-	@PostMapping("/faq/add.do")
+	@PostMapping("/faq/add")
 	public String insert(@ModelAttribute FaqDto faqDto) {
 //		Faq 내용 확인
 		log.info("테스트3 :"+faqDto);
 //		서비스의 insert 실행
 		faqService.save(faqDto);
 
-		return "redirect:/faq/faq.do";
+		return "redirect:/faq/faq";
 	}
 
 	//	수정페이지 열기(상세조회)
-	@GetMapping("/faq/edition.do")
+	@GetMapping("/faq/edition")
 	public String updateFaqView(@RequestParam long fno, Model model) {
 //		서비스의 상세조회
 		FaqDto faqDto=faqService.findById(fno);
@@ -71,19 +71,19 @@ public class FaqController {
 	}
 
 	//	수정: 버튼 클릭시 실행
-	@PostMapping("/faq/edit.do")
+	@PostMapping("/faq/edit")
 	public String update(@ModelAttribute FaqDto faqDto) {
 //		서비스의 수정 실행
 		faqService.save(faqDto);
-		return "redirect:/faq/faq.do";
+		return "redirect:/faq/faq";
 	}
 
 	//	삭제
-	@PostMapping("/faq/delete.do")
+	@PostMapping("/faq/delete")
 	public String deleteById(@RequestParam long fno) {
 //		서비스의 삭제 실행
 		faqService.deleteById(fno);
-		return "redirect:/faq/faq.do";
+		return "redirect:/faq/faq";
 	}
 }
 
