@@ -24,8 +24,8 @@ public class FileDbService {
     private final ErrorMsg  errorMsg;
 
     //    like 검색 + 전체조회 + 페이징처리
-    public Page<FileDbDto> selectAll(String fileTitle, Pageable pageable) {
-        Page<FileDb> page= fileDbRepository.selectAll(fileTitle, pageable);
+    public Page<FileDbDto> selectFileDbList(String fileTitle, Pageable pageable) {
+        Page<FileDb> page= fileDbRepository.selectFileDbList(fileTitle, pageable);
         return page.map(fileDb -> mapStruct.toDto(fileDb));
     }
 

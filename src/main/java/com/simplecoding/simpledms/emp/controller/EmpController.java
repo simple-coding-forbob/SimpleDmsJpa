@@ -32,13 +32,13 @@ public class EmpController {
 	
 //	전체조회
 	@GetMapping("/emp/emp.do")
-	public String selectAll( @RequestParam(defaultValue = "") String searchKeyword,
+	public String selectEmpList( @RequestParam(defaultValue = "") String searchKeyword,
 							 @PageableDefault(page = 0, size = 3) Pageable pageable,
 					   Model model) {
 //		1) Pageable : page(현재페이지), size(1페이지 당 화면에 보일개수)
 //		Pageable pageable = PageRequest.of(page, size);
 //		전체조회 서비스 메소드 실행
-		Page<?> pages=empService.selectAll(searchKeyword, pageable);
+		Page<?> pages=empService.selectEmpList(searchKeyword, pageable);
 		log.info("테스트 : "+pages);
 		model.addAttribute("emps", pages.getContent());
 		model.addAttribute("pages", pages);

@@ -20,10 +20,10 @@ class FileDbServiceTest {
     FileDbService fileDbService;
 
     @Test
-    void selectAll() {
+    void selectFileDbList() {
         String searchKeyword="";
         Pageable pageable = PageRequest.of(0,3);
-        Page<FileDbDto> page = fileDbService.selectAll(searchKeyword, pageable);
+        Page<FileDbDto> page = fileDbService.selectFileDbList(searchKeyword, pageable);
         log.info("테스트 : "+page.getContent());  // 패이지 안에 content 에 dept 객체가 있습니다.
     }
 

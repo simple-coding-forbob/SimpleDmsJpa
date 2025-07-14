@@ -36,10 +36,10 @@ public class FileDbController {
 	
 //	전체조회
 	@GetMapping("/fileDb/fileDb.do")
-	public String selectAll(@RequestParam(defaultValue = "") String searchKeyword,
+	public String selectFileDbList(@RequestParam(defaultValue = "") String searchKeyword,
 								   @PageableDefault(page = 0, size = 3) Pageable pageable,
 								   Model model) {
-		Page<FileDbDto> pages=fileDbService.selectAll(searchKeyword, pageable);
+		Page<FileDbDto> pages=fileDbService.selectFileDbList(searchKeyword, pageable);
 		log.info("테스트 : "+pages);
 		model.addAttribute("fileDbs", pages.getContent());
 		model.addAttribute("pages", pages);

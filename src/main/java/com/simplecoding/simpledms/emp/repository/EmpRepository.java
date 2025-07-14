@@ -14,7 +14,7 @@ public interface EmpRepository extends JpaRepository<Emp,Long> {
     @EntityGraph(attributePaths = {"dept"})
     @Query(value = "select e from Emp e\n" +
             "where e.ename like %:searchKeyword%")
-    Page<Emp> selectAll(
+    Page<Emp> selectEmpList(
             @Param("searchKeyword") String searchKeyword,
             Pageable pageable
     );
