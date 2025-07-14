@@ -64,7 +64,7 @@ public class FileDbController {
 		FileDbDto fileDbDto=new FileDbDto(fileTitle,fileContent,image.getBytes());
 //		서비스의 insert 메소드 실행
 		fileDbService.save(fileDbDto);
-		return "redirect:/fileDb/fileDb";
+		return "redirect:/fileDb";
 	}
 	
 //	다운로드 메소드: 사용자가 다운로드URL을 웹브라우저에서 실행하면 이 메소드가 첨부파일을 전달해줌
@@ -95,7 +95,7 @@ public class FileDbController {
 	public String delete(@RequestParam(defaultValue = "") String uuid) {
 //		서비스의 삭제 메소드 실행
 		fileDbService.deleteById(uuid);
-		return "redirect:/fileDb/fileDb";
+		return "redirect:/fileDb";
 	}
 }
 
