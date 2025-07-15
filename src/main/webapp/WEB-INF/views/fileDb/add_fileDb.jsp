@@ -62,8 +62,8 @@
 
 <script type="text/javascript">
 	function fn_save() {
-		/* 저장 함수: 저장 URL(/fileDb/add.do) */
-		$("#addForm").attr("action",'<c:out value="/fileDb/add.do" />')
+		/* 저장 함수: 저장 URL(/fileDb/add) */
+		$("#addForm").attr("action",'<c:out value="/fileDb/add" />')
 		.submit();		
 	}
 </script>

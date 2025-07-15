@@ -44,9 +44,11 @@ public interface MapStruct {
 
     //    TODO: 4) fileDb <-> fileDto
     FileDbDto toDto(FileDb fileDb);
+    @Mapping(target = "fileData", ignore = true)
     FileDb toEntity(FileDbDto fileDbDto);
 
     //    TODO: 5) gallery <-> galleryDto
     GalleryDto toDto(Gallery gallery);
+    @Mapping(target = "galleryData", ignore = true)
     Gallery toEntity(GalleryDto galleryDto);
 }

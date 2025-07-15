@@ -51,8 +51,8 @@
 
 <script type="text/javascript">
 	function fn_save() {
-		/* 저장 함수: 저장 URL(/gallery/add.do) */
-		$("#addForm").attr("action",'<c:out value="/gallery/add.do" />')
+		/* 저장 함수: 저장 URL(/gallery/add) */
+		$("#addForm").attr("action",'<c:out value="/gallery/add" />')
 		.submit();
 	}
 </script>

@@ -68,20 +68,20 @@ ${pages.size} : 화면에보일개수<br>
 	function fn_egov_link_page(page) {
 		/* 현재페이지번호 저장 */
 		$("#page").val(page);
-		$("#listForm").attr("action",'<c:out value="/fileDb/fileDb.do" />')
+		$("#listForm").attr("action",'<c:out value="/fileDb" />')
 					.submit();
 	}
 	/* 전체조회 */
 	function fn_egov_selectList() {
 		$("#page").val(0);    // 현재페이지: 벡엔드로 보낼때 첫페이지는 0입니다.
-		$("#listForm").attr("action",'<c:out value="/fileDb/fileDb.do" />')
+		$("#listForm").attr("action",'<c:out value="/fileDb" />')
 					.submit();
 	}
 	/* 삭제: /fileDb/delete.do */
 	function fn_delete(uuid) {
 		/* 전체조회: method="get" -> "post" 변경해서 전달 */
 		$("#uuid").val(uuid);
-		$("#listForm").attr("action",'<c:out value="/fileDb/delete.do" />')
+		$("#listForm").attr("action",'<c:out value="/fileDb/delete" />')
 					  .attr("method","post")
 		.submit();
 	}
