@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface GalleryRepository extends JpaRepository<Gallery, String> {
     @Query(value = "select g from Gallery g\n" +
             "where g.galleryTitle like %:searchKeyword%")
-    Page<Gallery> selectAll(
+    Page<Gallery> selectGalleryList(
             @Param("searchKeyword") String searchKeyword,
             Pageable pageable
     );

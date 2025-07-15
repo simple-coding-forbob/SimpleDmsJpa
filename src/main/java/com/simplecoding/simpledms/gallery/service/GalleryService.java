@@ -24,13 +24,13 @@ public class GalleryService {
     private final ErrorMsg  errorMsg;
 
     //    like 검색 + 전체조회 + 페이징처리
-    public Page<GalleryDto> selectAll(String fileTitle, Pageable pageable) {
-        Page<Gallery> page= galleryRepository.selectAll(fileTitle, pageable);
+    public Page<GalleryDto> selectGalleryList(String searchKeyword, Pageable pageable) {
+        Page<Gallery> page= galleryRepository.selectGalleryList(searchKeyword, pageable);
         return page.map(gallery -> mapStruct.toDto(gallery));
     }
 
     //    TODO: 저장/수정 : save
-    public void save(GalleryDto galleryDto) {
+    public void save(GalleryDto galleryDto, byte[] image) {
 //        TODO: 0) DTO 값 -> Entity 로 저장
         Gallery gallery=mapStruct.toEntity(galleryDto);
         // TODO 1) UUID 만들기(기본키): 자바에서 중복안되게 만들어주는 글자(랜덤)
@@ -40,6 +40,7 @@ public class GalleryService {
 //		        3) GalleryVO 에 위의 UUID, URL 저장(setter)
         gallery.setUuid(newUuid);
         gallery.setGalleryFileUrl(downloadURL);
+        gallery.setGalleryData(image);
 //		        4) DB insert(galleryVO)
         galleryRepository.save(gallery);
     }
@@ -52,10 +53,10 @@ public class GalleryService {
 //		URL 만드는 클래스      : ServletUriComponentsBuilder
         return ServletUriComponentsBuilder
                 .fromCurrentContextPath()     // 기본주소 : http://localhost:8080
-                .path("/gallery/download.do")  // 경로    : /gallery/download.do
+                .path("/gallery/download")  // 경로    : /gallery/download
                 .query("uuid="+uuid)          // 쿼리스트링: ?uuid=uuid값
                 .toUriString();               // 위에꺼조합:
-        // http://localhost:8080/gallery/download.do?uuid=uuid값
+        // http://localhost:8080/gallery/download?uuid=uuid값
     }
 
     //    상세조회

@@ -24,13 +24,13 @@ public class FileDbService {
     private final ErrorMsg  errorMsg;
 
     //    like 검색 + 전체조회 + 페이징처리
-    public Page<FileDbDto> selectFileDbList(String fileTitle, Pageable pageable) {
-        Page<FileDb> page= fileDbRepository.selectFileDbList(fileTitle, pageable);
+    public Page<FileDbDto> selectFileDbList(String searchKeyword, Pageable pageable) {
+        Page<FileDb> page= fileDbRepository.selectFileDbList(searchKeyword, pageable);
         return page.map(fileDb -> mapStruct.toDto(fileDb));
     }
 
     //    TODO: 저장/수정 : save
-    public void save(FileDbDto fileDbDto) {
+    public void save(FileDbDto fileDbDto, byte[] image) {
 //        TODO: 0) DTO 값 -> Entity 로 저장
         FileDb fileDb=mapStruct.toEntity(fileDbDto);
         // TODO 1) UUID 만들기(기본키): 자바에서 중복안되게 만들어주는 글자(랜덤)
@@ -40,6 +40,7 @@ public class FileDbService {
 //		        3) FileDbVO 에 위의 UUID, URL 저장(setter)
         fileDb.setUuid(newUuid);
         fileDb.setFileUrl(downloadURL);
+        fileDb.setFileData(image);
 //		        4) DB insert(fileDbVO)
         fileDbRepository.save(fileDb);
     }
@@ -52,10 +53,10 @@ public class FileDbService {
 //		URL 만드는 클래스      : ServletUriComponentsBuilder
         return ServletUriComponentsBuilder
                 .fromCurrentContextPath()     // 기본주소 : http://localhost:8080
-                .path("/fileDb/download.do")  // 경로    : /fileDb/download.do
+                .path("/fileDb/download")  // 경로    : /fileDb/download
                 .query("uuid="+uuid)          // 쿼리스트링: ?uuid=uuid값
                 .toUriString();               // 위에꺼조합:
-        // http://localhost:8080/fileDb/download.do?uuid=uuid값
+        // http://localhost:8080/fileDb/download?uuid=uuid값
     }
 
     //    상세조회

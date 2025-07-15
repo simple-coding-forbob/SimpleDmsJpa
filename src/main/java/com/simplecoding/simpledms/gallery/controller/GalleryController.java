@@ -36,10 +36,10 @@ public class GalleryController {
 	
 //	전체조회
 	@GetMapping("/gallery")
-	public String selectAll(@RequestParam(defaultValue = "") String searchKeyword,
+	public String selectGalleryList(@RequestParam(defaultValue = "") String searchKeyword,
 								   @PageableDefault(page = 0, size = 3) Pageable pageable,
 								   Model model) {
-		Page<GalleryDto> pages=galleryService.selectAll(searchKeyword, pageable);
+		Page<GalleryDto> pages=galleryService.selectGalleryList(searchKeyword, pageable);
 		log.info("테스트 : "+pages);
 		model.addAttribute("gallerys", pages.getContent());
 		model.addAttribute("pages", pages);
@@ -57,8 +57,8 @@ public class GalleryController {
 	@PostMapping("/gallery/add")
 	public String insert(@RequestParam(defaultValue = "") String galleryTitle,
 			 @RequestParam(required = false) MultipartFile image) throws Exception {
-		GalleryDto galleryDto=new GalleryDto(galleryTitle,image.getBytes());
-		galleryService.save(galleryDto);
+		GalleryDto galleryDto=new GalleryDto(galleryTitle);
+		galleryService.save(galleryDto,image.getBytes());
 		return "redirect:/gallery";
 	}
 	

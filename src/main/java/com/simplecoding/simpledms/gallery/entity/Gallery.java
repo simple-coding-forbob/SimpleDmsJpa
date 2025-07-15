@@ -17,8 +17,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@DynamicInsert
-@DynamicUpdate
+@EqualsAndHashCode(of = "uuid", callSuper = false)
 public class Gallery extends BaseTimeEntity {
 	@Id
 	private String uuid;            // 기본키
