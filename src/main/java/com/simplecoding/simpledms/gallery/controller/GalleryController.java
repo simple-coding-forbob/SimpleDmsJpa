@@ -78,7 +78,7 @@ public class GalleryController {
 	
 //	삭제
 	@PostMapping("/gallery/delete")
-	public String delete(@RequestParam(defaultValue = "") String uuid) {
+	public String deleteById(@RequestParam(defaultValue = "") String uuid) {
 		galleryService.deleteById(uuid);
 		return "redirect:/gallery";
 	}

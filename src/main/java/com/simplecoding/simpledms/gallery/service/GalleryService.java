@@ -67,9 +67,6 @@ public class GalleryService {
 
     //    삭제 함수
     public void deleteById(String uuid) {
-        if (!galleryRepository.existsById(uuid)) {
-            throw new RuntimeException(errorMsg.getMessage("errors.not.found"));
-        }
         galleryRepository.deleteById(uuid);
     }
 

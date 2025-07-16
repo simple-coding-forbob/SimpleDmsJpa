@@ -92,7 +92,7 @@ public class FileDbController {
 
 //	삭제
 	@PostMapping("/fileDb/delete")
-	public String delete(@RequestParam(defaultValue = "") String uuid) {
+	public String deleteById(@RequestParam(defaultValue = "") String uuid) {
 //		서비스의 삭제 메소드 실행
 		fileDbService.deleteById(uuid);
 		return "redirect:/fileDb";

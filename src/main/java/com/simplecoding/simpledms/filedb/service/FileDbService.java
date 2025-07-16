@@ -67,9 +67,6 @@ public class FileDbService {
 
     //    삭제 함수
     public void deleteById(String uuid) {
-        if (!fileDbRepository.existsById(uuid)) {
-            throw new RuntimeException(errorMsg.getMessage("errors.not.found"));
-        }
         fileDbRepository.deleteById(uuid);
     }
 }
