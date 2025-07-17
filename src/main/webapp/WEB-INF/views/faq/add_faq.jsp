@@ -18,7 +18,7 @@
 	<form id="addForm" name="addForm" method="post">
         <div class="mb3">
             <label for="title" class="form-label">title</label>
-            <input  
+            <input  type="text"
             		class="form-control"
             		id="title"
             		name="title"
@@ -26,7 +26,7 @@
         </div>
         <div class="mb3">
             <label for="content" class="form-label">content</label>
-            <input 
+            <input type="text"
                    class="form-control"
                    id="content"
                    name="content"
@@ -49,7 +49,7 @@
     <script src="/js/faq/faq-validation-config.js"></script>
     <script type="text/javascript">
 		function fn_save() {        
-			$("#addForm").attr("action",'<c:out value="/faq/add.do" />')
+			$("#addForm").attr("action",'<c:out value="/faq/add" />')
 						.submit();
 		}
     </script>

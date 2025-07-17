@@ -18,7 +18,7 @@
     	<input type="hidden" name="fno" value="<c:out value="${faq.fno}" />">
         <div class="mb3">
             <label for="title" class="form-label">title</label>
-            <input 
+            <input type="text"
                    class="form-control"
                    id="title"
                    name="title"
@@ -27,7 +27,7 @@
         </div>
         <div class="mb3">
             <label for="content" class="form-label">content</label>
-            <input 
+            <input type="text"
                    class="form-control"
                    id="content"
                    name="content"
@@ -53,11 +53,11 @@
 <script src="/js/faq/faq-validation-config.js"></script>
 <script type="text/javascript" defer="defer">
   	function fn_save() {
-		$("#addForm").attr("action",'<c:out value="/faq/edit.do" />')
+		$("#addForm").attr("action",'<c:out value="/faq/edit" />')
 					.submit();
 	}
 	function fn_delete() {
-		$("#addForm").attr("action",'<c:out value="/faq/delete.do" />')
+		$("#addForm").attr("action",'<c:out value="/faq/delete" />')
 						.submit();
 	}
 </script>

@@ -18,7 +18,7 @@
 		<input type="hidden" name="dno" value="<c:out value='${dept.dno}' />">
         <div class="mb3">
             <label for="dname" class="form-label">dname</label>
-            <input 
+            <input type="text"
                    class="form-control"
                    id="dname"
             	   name="dname"
@@ -27,7 +27,7 @@
         </div>
         <div class="mb3">
             <label for="loc" class="form-label">loc</label>
-            <input 
+            <input type="text"
                    class="form-control"
                    id="loc"
             	   name="loc"
@@ -55,13 +55,13 @@
 
 <script type="text/javascript">
 	function fn_save() {
-		/* 저장 함수: 저장 URL(/dept/edit.do) */
-		$("#addForm").attr("action",'<c:out value="/dept/edit.do" />')
+		/* 저장 함수: 저장 URL(/dept/edit) */
+		$("#addForm").attr("action",'<c:out value="/dept/edit" />')
 		.submit();		
 	}
-	/* 삭제: /dept/delete.do */
+	/* 삭제: /dept/delete */
 	function fn_delete() {
-		$("#addForm").attr("action",'<c:out value="/dept/delete.do" />')
+		$("#addForm").attr("action",'<c:out value="/dept/delete" />')
 		.submit();
 	}
 </script>

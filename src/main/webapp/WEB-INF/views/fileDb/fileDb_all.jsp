@@ -77,7 +77,7 @@ ${pages.size} : 화면에보일개수<br>
 		$("#listForm").attr("action",'<c:out value="/fileDb" />')
 					.submit();
 	}
-	/* 삭제: /fileDb/delete.do */
+	/* 삭제: /fileDb/delete */
 	function fn_delete(uuid) {
 		/* 전체조회: method="get" -> "post" 변경해서 전달 */
 		$("#uuid").val(uuid);

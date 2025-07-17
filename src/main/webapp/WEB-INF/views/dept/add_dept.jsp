@@ -18,7 +18,7 @@
 	<form id="addForm" name="addForm" method="post">
         <div class="mb3">
             <label for="dname" class="form-label">dname</label>
-            <input  
+            <input  type="text"
             		class="form-control"
             		id="dname"
             		name="dname"
@@ -26,7 +26,7 @@
         </div>
         <div class="mb3">
             <label for="loc" class="form-label">loc</label>
-            <input 
+            <input type="text"
                    class="form-control"
                    id="loc"
             	   name="loc"
@@ -49,8 +49,8 @@
 
 <script type="text/javascript">
 	function fn_save() {
-		/* 저장 함수: 저장 URL(/dept/add.do) */
-		$("#addForm").attr("action",'<c:out value="/dept/add.do" />')
+		/* 저장 함수: 저장 URL(/dept/add) */
+		$("#addForm").attr("action",'<c:out value="/dept/add" />')
 		.submit();
 	}
 </script>

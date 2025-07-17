@@ -89,21 +89,21 @@ ${pages.size} : 화면에보일개수<br>
 	function fn_egov_link_page(page) {
 		/* 현재페이지번호 저장 */
 		$("#page").val(page);
-		$("#listForm").attr("action",'<c:out value="/emp/emp.do" />')
+		$("#listForm").attr("action",'<c:out value="/emp" />')
 					.submit();
 	}
 
     /* 전체조회 */
 	function fn_egov_selectList() {
 		$("#page").val(0);    // 현재페이지: 벡엔드로 보낼때 첫페이지는 0입니다.
-		$("#listForm").attr("action",'<c:out value="/emp/emp.do" />')
+		$("#listForm").attr("action",'<c:out value="/emp" />')
 					.submit();
 	}
 	/* 수정페이지 열기 */
 	function fn_select(eno) {
 		$("#eno").val(eno);        // 사원번호(기본키)
-		/* 수정페이지 URL:/emp/edition.do */
-		$("#listForm").attr("action",'<c:out value="/emp/edition.do" />')
+		/* 수정페이지 URL:/emp/edition */
+		$("#listForm").attr("action",'<c:out value="/emp/edition" />')
 					.submit();
 	}
 </script>
