@@ -32,7 +32,7 @@
         </div>
         <div class="mb3">
             <label for="fileContent" class="form-label">fileContent</label>
-            <input 
+            <input type="text"
                    class="form-control"
             	   id="fileContent"
             	   name="fileContent"                   

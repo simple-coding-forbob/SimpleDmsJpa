@@ -21,7 +21,7 @@
 	>
         <div class="mb3">
             <label for="galleryTitle" class="form-label">galleryTitle</label>
-            <input  
+            <input  type="text"
             		class="form-control"
                     id="galleryTitle"
                     name="galleryTitle"

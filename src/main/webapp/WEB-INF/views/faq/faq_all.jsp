@@ -71,21 +71,20 @@
 <!-- 페이징 라이브러리 -->
 <script src="/js/jquery.twbsPagination.js" type="text/javascript"></script>
 
-    <script src="/js/faq/faq-autocomplete.js" type="text/javascript"></script>
 	<script type="text/javascript" defer="defer">
 		function fn_egov_link_page(pageNo) {
 			$("#page").val(pageNo);
-			$("#listForm").attr("action",'<c:out value="/faq/faq.do" />')
+			$("#listForm").attr("action",'<c:out value="/faq" />')
 						.submit();
 		}
 		function fn_egov_selectList() {
 			$("#page").val(0);
-			$("#listForm").attr("action",'<c:out value="/faq/faq.do" />')
+			$("#listForm").attr("action",'<c:out value="/faq" />')
 						.submit();
 		}
 		function fn_select(fno) {
 			$("#fno").val(fno); 
-			$("#listForm").attr("action",'<c:out value="/faq/edition.do" />')
+			$("#listForm").attr("action",'<c:out value="/faq/edition" />')
 						.submit();
 		}
 	</script>
