@@ -35,9 +35,15 @@
                    placeholder="content" />
         </div>
         <div class="mb3">
-            <button class="btn btn-warning" onclick="fn_save()">수정</button>
-                        
-            <button class="btn btn-danger" onclick="fn_delete()">삭제</button>
+            <button type="button"
+                    class="btn btn-warning"
+                    onclick="fn_save()"
+            >수정</button>
+
+            <button type="button"
+                    class="btn btn-danger"
+                    onclick="fn_delete()"
+            >삭제</button>
         </div>
     </form>
 </div>
@@ -53,11 +59,11 @@
 <script src="/js/faq/faq-validation-config.js"></script>
 <script type="text/javascript" defer="defer">
   	function fn_save() {
-		$("#addForm").attr("action",'<c:out value="/faq/edit" />')
+		$("#addForm").attr("action",'/faq/edit')
 					.submit();
 	}
 	function fn_delete() {
-		$("#addForm").attr("action",'<c:out value="/faq/delete" />')
+		$("#addForm").attr("action",'/faq/delete')
 						.submit();
 	}
 </script>

@@ -12,7 +12,6 @@
     
 </head>
 <body>
-${emp}
 <jsp:include page="/common/header.jsp"/>
 <div class="container">
     <form id="addForm" name="addForm" method="post">
@@ -81,11 +80,14 @@ ${emp}
                    placeholder="dno" />
         </div>
         <div class="mb3">
-            <button class="btn btn-warning"
-            				onclick="fn_save()"
+            <button type="button"
+                    class="btn btn-warning"
+                    onclick="fn_save()"
             >수정</button>
-            <button class="btn btn-danger"
-            				onclick="fn_delete()"
+
+            <button type="button"
+                    class="btn btn-danger"
+                    onclick="fn_delete()"
             >삭제</button>
         </div>
     </form>
@@ -98,12 +100,12 @@ ${emp}
 <script type="text/javascript">
 	function fn_save() {
 		/* 저장 함수: 저장 URL(/emp/edit) */
-		$("#addForm").attr("action",'<c:out value="/emp/edit" />')
+		$("#addForm").attr("action",'/emp/edit')
 		.submit();
 	}
 	/* 삭제: /emp/delete */
 	function fn_delete() {
-		$("#addForm").attr("action",'<c:out value="/emp/delete" />')
+		$("#addForm").attr("action",'/emp/delete')
 		.submit();
 	}
 </script>

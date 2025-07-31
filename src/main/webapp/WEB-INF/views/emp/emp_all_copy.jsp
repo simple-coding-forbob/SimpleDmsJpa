@@ -13,23 +13,16 @@
 <body>
 <jsp:include page="/common/header.jsp"></jsp:include>
 <div class="page mt3">
-		<form id="listForm" name="listForm" method="get">
-		<!-- 수정페이지 열기때문에 필요 -->
-	    <input type="hidden" id="eno" name="eno">
-	    <!-- TODO: 컨트롤러로 보낼 페이지번호 -->
-		<input type="hidden" id="page" name="page" value="0">
+		<form id="listForm" name="listForm">
 	    
 		<div class="input-group mb3 mt3">
 		  <input type="text" 
-		         class="form-control" 
-		         id="searchKeyword"
-		         name="searchKeyword"
+		         class="form-control"
 		         placeholder="사원명입력"
 				 value="${param.searchKeyword}"
 		  >
 		  <button class="btn btn-primary"
 		          type="button"
-				  onclick="fn_egov_link_page(0)"
 		  >
 		          검색
 		  </button>
@@ -50,28 +43,21 @@
 		  </thead>
 		  <tbody>
 			<!-- 반복문 -->
-		  	<c:forEach var="data" items="${emps}">  	
 		  		<tr>
 		  		  <td>
-		  		  	<a href="/emp/edition?eno=${data.eno}">
-			          <c:out value="${data.eno}"></c:out>
-			        </a>
+			          1
 		  		  </td>
-			      <td><c:out value="${data.ename}"></c:out></td>
-			      <td><c:out value="${data.job}"></c:out></td>
-			      <td><c:out value="${data.manager}"></c:out></td>
-			      <td><c:out value="${data.hiredate}"></c:out></td>
-			      <td><c:out value="${data.salary}"></c:out></td>
-			      <td><c:out value="${data.commission}"></c:out></td>
-			      <td><c:out value="${data.dno}"></c:out></td>
+			      <td>2</td>
+			      <td>3</td>
+			      <td>4</td>
+			      <td>5</td>
+			      <td>6</td>
+			      <td>7</td>
+			      <td>8</td>
 			    </tr>
-		  	</c:forEach>
 
 		  </tbody>
 		</table>
-		<c:if test="${empty emps}">
-			데이터가 없습니다.
-		</c:if>
 		<!-- 페이지 번호 태그 -->
 		<ul class="pagination" id="pagination"></ul>
 	</form>
@@ -81,32 +67,6 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <!-- 부트스트랩 js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
-<script>
-	function fn_egov_link_page(page) {
-		$("#page").val(page);
-		$("#listForm").attr("action", "/emp")
-				.submit();
-	}
-</script>
-
-<!-- 페이지 플로그인 추가 -->
-<script src="/js/jquery.twbsPagination.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-	/* 페이징 처리 */
-	$('#pagination').twbsPagination({
-		totalPages: ${pages.totalPages},
-		startPage:${pages.number+1},            // 현재페이지: 화면에 표시할때는 +1 해서 보입니다.
-		visiblePages: ${pages.size},
-		initiateStartPageClick: false,
-		onPageClick: function (event, page) {
-			/* 재조회 */
-			fn_egov_link_page(page-1)
-		}
-	});
-
-</script>
 
 <jsp:include page="/common/footer.jsp"></jsp:include>
 </body>
