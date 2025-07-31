@@ -33,8 +33,9 @@
                    placeholder="loc" />
         </div>
         <div class="mb3">
-            <button class="btn btn-primary"
-            		onclick="fn_save()"
+            <button type="button"
+                    class="btn btn-primary"
+                    onclick="fn_save()"
               >저장</button>
         </div>
     </form>
@@ -48,11 +49,11 @@
 <script src="/js/dept/dept-validation-config.js"></script>
 
 <script type="text/javascript">
-	function fn_save() {
-		/* 저장 함수: 저장 URL(/dept/add) */
-		$("#addForm").attr("action",'<c:out value="/dept/add" />')
-		.submit();
-	}
+    function fn_save() {
+        /* 저장 함수: 저장 URL(/dept/add) */
+        $("#addForm").attr("action","/dept/add")
+            .submit();
+    }
 </script>
 
 <jsp:include page="/common/footer.jsp"/>

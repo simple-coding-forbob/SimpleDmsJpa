@@ -19,34 +19,26 @@
 <!-- 스프링 업로드 파일 제한(기본): 1M -> 10M -->
 	<form id="addForm"
 	      name="addForm"
-	      method="post"
-	      enctype="multipart/form-data"
 	      >
         <div class="mb3">
             <label for="fileTitle" class="form-label">fileTitle</label>
             <input  
             		class="form-control"
-            		id="fileTitle"
-            		name="fileTitle"
             		placeholder="제목" />
         </div>
         <div class="mb3">
             <label for="fileContent" class="form-label">fileContent</label>
             <input type="text"
                    class="form-control"
-            	   id="fileContent"
-            	   name="fileContent"                   
                    placeholder="내용입력" />
         </div>
 		<div class="input-group">
 		<!-- type="file": 파일대화상자가 화면에 보입니다. -->
 		  <input type="file" 
-		         class="form-control" 
-            	 id="image"
-            	 name="image" 		         
+		         class="form-control"
 		         >
 		  <button class="btn btn-primary" 
-		          type="submit"
+		          type="button"
 		          >저장</button>
 		</div>
     </form>
@@ -55,17 +47,6 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <!-- 부트스트랩 js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-<!-- 유효성체크 플러그인 -->
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.21.0/dist/jquery.validate.min.js"></script>
-<script src="/js/fileDb/fileDb-validation-config.js"></script>
-
-<script type="text/javascript">
-	function fn_save() {
-		/* 저장 함수: 저장 URL(/emp/add) */
-		$("#addForm").attr("action","/fileDb/add")
-				.submit();
-	}
-</script>
 
 <jsp:include page="/common/footer.jsp"/>
 </body>

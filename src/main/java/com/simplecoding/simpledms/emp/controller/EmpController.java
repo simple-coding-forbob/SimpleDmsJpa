@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class EmpController {
 //	서비스 가져오기
-	@Autowired
 	private final EmpService empService;
 	
 //	전체조회
