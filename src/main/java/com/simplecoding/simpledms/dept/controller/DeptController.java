@@ -74,7 +74,7 @@ public class DeptController {
 	@PostMapping("/dept/edit")
 	public String update(@ModelAttribute DeptDto deptDto) {
 //		서비스의 수정 실행
-		deptService.save(deptDto);
+		deptService.updateFromDto(deptDto);
 		return "redirect:/dept";
 	}
 

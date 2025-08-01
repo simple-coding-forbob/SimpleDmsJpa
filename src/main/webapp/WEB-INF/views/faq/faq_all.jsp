@@ -54,7 +54,6 @@
 			      <td><c:out value="${data.content}" /></td>
 			    </tr>
 		   </c:forEach>
-
 		  </tbody>
 		</table>
 		<c:if test="${empty faqs}">

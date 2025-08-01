@@ -2,6 +2,8 @@ package com.simplecoding.simpledms.emp.service;
 
 import com.simplecoding.simpledms.common.ErrorMsg;
 import com.simplecoding.simpledms.common.MapStruct;
+import com.simplecoding.simpledms.dept.entity.Dept;
+import com.simplecoding.simpledms.dept.repository.DeptRepository;
 import com.simplecoding.simpledms.emp.dto.EmpDto;
 import com.simplecoding.simpledms.emp.entity.Emp;
 import com.simplecoding.simpledms.emp.repository.EmpRepository;
@@ -16,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class EmpService {
 
     //    DB CRUD 클래스 받기 : JPA 제공 함수 사용 가능
+    private final DeptRepository deptRepository;
     private final EmpRepository empRepository;
     private final MapStruct mapStruct;
     private final ErrorMsg  errorMsg;
@@ -49,6 +52,11 @@ public class EmpService {
                 .orElseThrow(() -> new RuntimeException("errors.not.found"));
 
         mapStruct.updateFromDto(empDto, emp);
+
+        // 참조키 변경은 아래가 있어야 수정됨: MapStruct 에서 처리가 안됨
+        Dept dept = deptRepository.findById(empDto.getDno())
+                .orElseThrow(() -> new RuntimeException(errorMsg.getMessage("errors.not.found")));
+        emp.setDept(dept);       // 이 부분이 있어야 dno도 수정됨
     }
 
     //    삭제 함수
