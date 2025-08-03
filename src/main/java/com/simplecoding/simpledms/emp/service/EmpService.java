@@ -3,7 +3,6 @@ package com.simplecoding.simpledms.emp.service;
 import com.simplecoding.simpledms.common.ErrorMsg;
 import com.simplecoding.simpledms.common.MapStruct;
 import com.simplecoding.simpledms.dept.entity.Dept;
-import com.simplecoding.simpledms.dept.repository.DeptRepository;
 import com.simplecoding.simpledms.emp.dto.EmpDto;
 import com.simplecoding.simpledms.emp.entity.Emp;
 import com.simplecoding.simpledms.emp.repository.EmpRepository;
@@ -18,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class EmpService {
 
     //    DB CRUD 클래스 받기 : JPA 제공 함수 사용 가능
-    private final DeptRepository deptRepository;
+//    private final DeptRepository deptRepository;
     private final EmpRepository empRepository;
     private final MapStruct mapStruct;
     private final ErrorMsg  errorMsg;
@@ -44,19 +43,20 @@ public class EmpService {
         return mapStruct.toDto(emp);
     }
 
-
     @Transactional
     public void updateFromDto(EmpDto empDto) {
 //        JPA 저장 함수 실행 : return 값 : 저장된 객체
         Emp emp=empRepository.findById(empDto.getEno())
                 .orElseThrow(() -> new RuntimeException("errors.not.found"));
 
+        // TODO: 참조키(연관관계) 필드는 수정되지 않음: 라이브러리 지원안함
         mapStruct.updateFromDto(empDto, emp);
 
-        // 참조키 변경은 아래가 있어야 수정됨: MapStruct 에서 처리가 안됨
-        Dept dept = deptRepository.findById(empDto.getDno())
-                .orElseThrow(() -> new RuntimeException(errorMsg.getMessage("errors.not.found")));
-        emp.setDept(dept);       // 이 부분이 있어야 dno도 수정됨
+        // TODO: 1) dno 만 만들어서 setter 에 넣기: 연관관계만 설정(dname, loc 추가 정보 필요없음)
+//               2) 부서 상세조회한 결과를 setter 에 넣기(dname, loc 추가 정보가 이 메소드에서 필요할 때 하기)
+        Dept dept =new Dept();
+        dept.setDno(empDto.getDno());
+        emp.setDept(dept);  // TODO: 참조키(연관관계) 필드는 개발자가 직접 수정
     }
 
     //    삭제 함수
@@ -64,4 +64,3 @@ public class EmpService {
         empRepository.deleteById(eno);
     }
 }
-
