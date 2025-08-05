@@ -46,7 +46,8 @@
             	 name="image" 		         
 		         >
 		  <button class="btn btn-primary" 
-		          type="submit"
+		          type="button"
+				  onclick="fn_save()"
 		          >저장</button>
 		</div>
     </form>
