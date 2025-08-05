@@ -14,7 +14,7 @@ import java.time.LocalDate;
 
 @Log4j2
 @SpringBootTest
-@EnableJpaAuditing
+//@EnableJpaAuditing
 class EmpServiceTest {
 
     @Autowired
@@ -72,7 +72,7 @@ class EmpServiceTest {
     void updateFromDto() {
 //		1) 테스트 조건:
         EmpDto empDto=new EmpDto();
-        empDto.setEno((long)8061);
+        empDto.setEno((long)8002);
         empDto.setEname("홍길동2");
         empDto.setJob("부장");
         empDto.setManager((long)8000);

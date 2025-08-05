@@ -33,7 +33,6 @@ public interface MapStruct {
     Emp toEntity(EmpDto empDto);
     // TODO: 수정 시 사용: dirty checking 기능(save() 없이 수정 가능)
 //      경고 무시하고 싶으면 아래 추가하세요
-    @Mapping(target = "dept", ignore = true)
     void updateFromDto(EmpDto empDto, @MappingTarget Emp emp);
 
     // TODO: 3) Dept <-> DeptDto
