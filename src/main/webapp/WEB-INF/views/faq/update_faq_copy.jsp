@@ -10,34 +10,32 @@
 	<!-- 	개발자 css -->
 	<link rel="stylesheet" href="/css/style.css">
 
-
 </head>
 <body>
 <jsp:include page="/common/header.jsp"/>
 <div class="page mt3">
-	<form id="addForm"
-	      name="addForm"
-	      >
+    <form id="addForm" name="addForm">
         <div class="mb3">
-            <label for="fileTitle" class="form-label">fileTitle</label>
-            <input  
-            		class="form-control"
-            		placeholder="제목" />
-        </div>
-        <div class="mb3">
-            <label for="fileContent" class="form-label">fileContent</label>
+            <label for="title" class="form-label">title</label>
             <input type="text"
                    class="form-control"
-                   placeholder="내용입력" />
+                   placeholder="title" />
         </div>
-		<div class="input-group">
-		  <input type="file" 
-		         class="form-control"
-		         >
-		  <button class="btn btn-primary" 
-		          type="button"
-		          >저장</button>
-		</div>
+        <div class="mb3">
+            <label for="content" class="form-label">content</label>
+            <input type="text"
+                   class="form-control"
+                   placeholder="content" />
+        </div>
+        <div class="mb3">
+            <button type="button"
+                    class="btn btn-warning"
+            >수정</button>
+
+            <button type="button"
+                    class="btn btn-danger"
+            >삭제</button>
+        </div>
     </form>
 </div>
 <!-- jquery -->
