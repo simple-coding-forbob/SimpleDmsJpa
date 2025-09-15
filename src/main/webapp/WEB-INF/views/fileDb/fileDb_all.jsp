@@ -14,7 +14,7 @@
 <body>
 <jsp:include page="/common/header.jsp"/>
 <form class="page mt3" id="listForm" name="listForm" method="get">
-    <!-- 수정페이지 열기때문에 필요 -->
+    <!-- 삭제시 uuid 벡엔드로 전송 필요 -->
     <input type="hidden" id="uuid" name="uuid">
     <!-- TODO: 컨트롤러로 보낼 페이지번호 -->
     <input type="hidden" id="page" name="page" value="0">
