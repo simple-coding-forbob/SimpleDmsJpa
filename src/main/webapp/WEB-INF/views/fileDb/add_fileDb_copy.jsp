@@ -15,6 +15,8 @@
 <body>
 <jsp:include page="/common/header.jsp"/>
 <div class="page mt3">
+<!-- 업로드 시 추가(첨부파일이라는 요청): enctype="multipart/form-data" -->
+<!-- 스프링 업로드 파일 제한(기본): 1M -> 10M -->
 	<form id="addForm"
 	      name="addForm"
 	      >
@@ -31,6 +33,7 @@
                    placeholder="내용입력" />
         </div>
 		<div class="input-group">
+		<!-- type="file": 파일대화상자가 화면에 보입니다. -->
 		  <input type="file" 
 		         class="form-control"
 		         >

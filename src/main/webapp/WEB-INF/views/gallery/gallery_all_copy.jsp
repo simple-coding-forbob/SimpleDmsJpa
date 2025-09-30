@@ -26,7 +26,7 @@
 		<!-- 카드 디자인: 반복문 -->
 		   <div class="col3">
 				<div class="card">
-					<img src="https://placehold.co/600x400" class="card-img-top"
+					<img src="#" class="card-img-top"
 						alt="이미지">
 					<div class="card-body">
 						<h5 class="card-title">1</h5>
