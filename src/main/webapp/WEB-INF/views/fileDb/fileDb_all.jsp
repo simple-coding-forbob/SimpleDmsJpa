@@ -1,9 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="fileDb 조회 페이지입니다.">
     <!-- 	부트스트랩 css  -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -14,7 +16,8 @@
 <body>
 <jsp:include page="/common/header.jsp"/>
 <form class="page mt3" id="listForm" name="listForm" method="get">
-    <!-- 삭제시 uuid 벡엔드로 전송 필요 -->
+
+    <!-- 수정페이지 열기때문에 필요 -->
     <input type="hidden" id="uuid" name="uuid">
     <!-- TODO: 컨트롤러로 보낼 페이지번호 -->
     <input type="hidden" id="page" name="page" value="0">

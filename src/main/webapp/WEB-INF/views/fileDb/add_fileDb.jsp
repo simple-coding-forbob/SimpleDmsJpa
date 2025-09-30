@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
-
-<html>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
     <title>Title</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="fileDb 추가 페이지입니다.">
 	<!-- 	부트스트랩 css  -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 	<!-- 	개발자 css -->
@@ -22,6 +23,7 @@
 	      method="post"
 	      enctype="multipart/form-data"
 	      >
+
         <div class="mb3">
             <label for="fileTitle" class="form-label">fileTitle</label>
             <input  
@@ -46,8 +48,7 @@
             	 name="image" 		         
 		         >
 		  <button class="btn btn-primary" 
-		          type="button"
-				  onclick="fn_save()"
+		          type="submit"
 		          >저장</button>
 		</div>
     </form>
